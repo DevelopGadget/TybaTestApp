@@ -5,7 +5,7 @@ class ImageAvatar extends StatelessWidget {
   final Uint8List? image;
   final double radius, margin;
   final String imageNetwork =
-      'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found-300x225.jpg';
+      'https://i.revistapym.com.co/old/2022/01/logo-tyba.png';
   const ImageAvatar({super.key, required this.radius, this.image, required this.margin});
 
   @override

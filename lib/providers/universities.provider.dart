@@ -17,6 +17,9 @@ class UniversitiesProvider with ChangeNotifier {
 
   bool loading = true;
   List<University> universities = [];
+  List<University> data = [];
+  final controller = ScrollController();
+  int page = 1;
 
   Future getUniversities() async {
     try {
@@ -26,10 +29,27 @@ class UniversitiesProvider with ChangeNotifier {
       Iterable list = jsonDecode(response.body);
       loading = false;
       universities = list.map((e) => University.fromJson(e)).toList();
-      notifyListeners();
+      inializeController();
+      setDataPage();
     } catch (e) {
       return [];
     }
+  }
+
+  inializeController() {
+    page = 1;
+    controller.addListener(() {
+      if (controller.position.maxScrollExtent == controller.offset) {
+        Future.delayed(const Duration(seconds: 1), setDataPage);
+      }
+    });
+  }
+
+  setDataPage() {
+    final int endPage = page * (env?.maxScroll as int);
+    data = universities.sublist(0, endPage);
+    page++;
+    notifyListeners();
   }
 
   setUniversityImage(XFile? file, int index) async {

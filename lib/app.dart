@@ -2,14 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:typatestapp/models/values.model.dart';
 import 'package:typatestapp/providers/translate.provider.dart';
+import 'package:typatestapp/providers/universities.provider.dart';
 import 'package:typatestapp/widgets/home.widget.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void dispose() {
+    Provider.of<UniversitiesProvider>(context).controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

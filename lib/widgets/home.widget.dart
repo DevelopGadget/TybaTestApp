@@ -22,6 +22,8 @@ class Home extends StatelessWidget {
       floatingActionButton: Consumer<SelectorViewProvider>(
         builder: (context, value, _) => FloatingActionButton(
           onPressed: () {
+            Provider.of<UniversitiesProvider>(context, listen: false).page = 1;
+            Provider.of<UniversitiesProvider>(context, listen: false).setDataPage();
             value.changeSelectorView(!value.isGridView);
           },
           child: Icon(value.isGridView ? Icons.grid_view_rounded : Icons.list_rounded, size: 25),
@@ -32,9 +34,9 @@ class Home extends StatelessWidget {
         child: Consumer2<SelectorViewProvider, UniversitiesProvider>(
           builder: (context, selectorValue, universitiesValue, _) {
             if(selectorValue.isGridView) {
-              return ViewGrid(universities: universitiesValue.universities);
+              return ViewGrid(universities: universitiesValue.data, controller: universitiesValue.controller);
             }
-            return ViewList(universities: universitiesValue.universities);
+            return ViewList(universities: universitiesValue.data, controller: universitiesValue.controller);
           },
         ),
       ),
