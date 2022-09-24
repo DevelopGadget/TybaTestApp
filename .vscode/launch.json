@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Dart",
+        "type": "dart",
+        "request": "launch",
+        "program": "lib/env/main_dev.env.dart"
+      },
+      {
+        "name": "development",
+        "program": "lib/env/main_dev.env.dart",
+        "request": "launch",
+        "type": "dart"
+      },
+      {
+        "name": "QA",
+        "program": "lib/env/main_qa.env.dart",
+        "request": "launch",
+        "type": "dart"
+      },
+      {
+        "name": "production",
+        "program": "lib/env/main_prod.env.dart",
+        "request": "launch",
+        "type": "dart"
+      }
+    ]
+  }
+  
