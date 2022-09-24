@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 University universityFromJson(String str) => University.fromJson(json.decode(str));
 
@@ -20,6 +21,7 @@ class University {
     dynamic stateProvince;
     List<String> webPages;
     String name;
+    Uint8List? image;
 
     factory University.fromJson(Map<String, dynamic> json) => University(
         alphaTwoCode: json["alpha_two_code"],

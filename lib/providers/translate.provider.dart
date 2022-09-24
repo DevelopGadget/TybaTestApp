@@ -22,8 +22,9 @@ class Translate {
     Translate translations = Translate(locale);
     String jsonContent =
         await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
-    if (jsonContent.isEmpty)
+    if (jsonContent.isEmpty) {
       jsonContent = await rootBundle.loadString('assets/lang/en.json');
+    }
     _localizedValues = json.decode(jsonContent);
     return translations;
   }

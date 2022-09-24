@@ -1,5 +1,8 @@
 {
     "Home": {
         "Title": "Univseridades"
+    },
+    "Detail": {
+        "Title": "Detalle"
     }
 }

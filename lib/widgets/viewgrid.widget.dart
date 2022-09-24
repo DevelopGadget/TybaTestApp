@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:typatestapp/models/university.model.dart';
+import 'package:typatestapp/widgets/details.widget.dart';
+import 'package:typatestapp/widgets/imageavatar.widget.dart';
 
 class ViewGrid extends StatelessWidget {
   final List<University> universities;
@@ -18,27 +21,31 @@ class ViewGrid extends StatelessWidget {
       itemBuilder: (context, index) => Card(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         elevation: 30,
-        child: Wrap(
-          direction: Axis.horizontal,
-          spacing: 6.0,
-          runSpacing: 4.0,
-          runAlignment: WrapAlignment.center,
-          alignment: WrapAlignment.center,     
-          children: [
-            const CircleAvatar(
-              radius: 45,
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://aeroclub-issoire.fr/wp-content/uploads/2020/05/image-not-found-300x225.jpg'), //NetworkImage
-                radius: 100,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                child: Details(index: index),
+                type: PageTransitionType.rightToLeftWithFade,
               ),
-            ),
-            Text(
-              universities[index].name,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-            )
-          ],
+            );
+          },
+          child: Wrap(
+            direction: Axis.horizontal,
+            spacing: 6.0,
+            runSpacing: 4.0,
+            runAlignment: WrapAlignment.center,
+            alignment: WrapAlignment.center,
+            children: [
+              ImageAvatar(radius: 44, image: universities[index].image, margin: 2),
+              Text(
+                universities[index].name,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+              )
+            ],
+          ),
         ),
       ),
     );
